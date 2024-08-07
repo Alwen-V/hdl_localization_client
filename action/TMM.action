@@ -1,0 +1,19 @@
+# Goal
+bool trigger
+geometry_msgs/PoseStamped current_pose
+---
+# Result
+PointCloudContainer temporary_point_cloud
+OdometryContainer temporary_odometry
+---
+# Feedback
+nav_msgs/Odometry odomAftMapped
+geometry_msgs/TransformStamped odom_trans
+sensor_msgs/PointCloud2 frame_point_cloud
+sensor_msgs/PointCloud2 frame_point_cloud_body
+nav_msgs/Path frame_path
+float64 alignment_score
+float64 inlier_ratio
+
+
+geometry_msgs/Transform frame_pose 

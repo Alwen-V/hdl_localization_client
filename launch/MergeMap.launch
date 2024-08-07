@@ -1,0 +1,17 @@
+<launch>
+    <!-- 参数设置 -->
+        <param name="prior_global_map" value="/home/alwen/project_learning/FAST-LIO_ws/src/hdl_localization/data/Merge_map_07241_fortest.pcd"/>
+        <param name="TMM_each_path_" value="/home/alwen/project_learning/FAST-LIO_ws/src/FAST_LIO/PCD"/>
+        <param name="output_map" value="/home/alwen/project_learning/FAST-LIO_ws/src/hdl_localization/data"/>
+        <param name="downsample_resolution" value="0.2" />
+        <param name="goodToMergeMap" type="bool" value="1" />
+
+    <!-- 启动节点 -->
+    <node name="merge_map_node" pkg="hdl_localization" type="merge_map" output="screen">
+        <rosparam param="prior_global_map" />
+        <rosparam param="TMM_each_path_" />
+        <rosparam param="downsample_resolution" />
+        <rosparam param="goodToMergeMap" />
+        <rosparam param="goodToMergeMap" />
+    </node>
+</launch>
