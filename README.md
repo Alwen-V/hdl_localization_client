@@ -26,7 +26,7 @@
 图2：图1基础上更新地图
 </center>
 
-<img src="data/figs/TMM_En_Hdl_large_scale.png" height= 99% /> 
+<img src="data/figs/TMM_En_Hdl_large_scale_new.png" height= 99% /> 
 
 <center>
 图3：图2基础上更新地图
