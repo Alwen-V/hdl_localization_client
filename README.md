@@ -10,7 +10,7 @@
 <img src="data/figs/globalMap_origin.png" height=99% /> 
 
 <center>
-图1：先验全局地图ff
+图1：先验全局地图
 </center>
 
 
