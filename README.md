@@ -1,3 +1,32 @@
+# Description
+这是一个基于hdl_localization的action客户端，它与作为服务端的[FAST_LIO2_server](https://github.com/Alwen-V/FAST-LIO2_server)一起构建了一个完整的ROS action通信结构。本仓库协同[FAST_LIO2_server](https://github.com/Alwen-V/FAST-LIO2_server)的目的是解决hdl_localization在应对先验地图发生变化时定位不准的问题，以及完善地图更新，实现巡检任务的长期稳定性。
+
+解决思路是检测全局定位不准时，触发临时建图模块FAST-LIO2来维持定位，同时利用action的反馈机制将每帧的里程计以及点云发送给hdl_localization进行发布以及状态更新，维持定位任务的稳定性。
+
+当检测到hdl_localization的定位稳定准确时，将退出临时建图模块(TMM)，并将此阶段FAST-LIO2的结果按序号记录在生成的文件夹中。当数据播放完毕时，启动MergeMap.launch可在线/离线完成全局的地图更新。地图更新策略是光路占据检测去除全局地图变化的点云，以及直接添加当前扫描帧增加的点云；构建因子图模型，定义里程计因子为二元边，定义全局位姿为一元边，优化临时建图过程里程计的漂移误差，平滑临时建的图与全局地图的衔接。
+
+## 效果展示
+
+<img src="data/figs/globalMap_origin.png" height=99% /> 
+
+<center>
+图1：先验全局地图ff
+</center>
+
+
+<img src="data/figs/TMM_En_Hdl.png" height=99% /> 
+
+
+<center>
+图2：图1基础上更新地图
+</center>
+
+<img src="data/figs/TMM_En_Hdl_large_scale.png" height= 99% /> 
+
+<center>
+图3：图2基础上更新地图
+</center>
+
 # hdl_localization
 ***hdl_localization*** is a ROS package for real-time 3D localization using a 3D LIDAR, such as velodyne HDL32e and VLP16. This package performs Unscented Kalman Filter-based pose estimation. It first estimates the sensor pose from IMU data implemented on the LIDAR, and then performs multi-threaded NDT scan matching between a globalmap point cloud and input point clouds to correct the estimated pose. IMU-based pose prediction is optional. If you disable it, the system uses the constant velocity model without IMU information.
 
